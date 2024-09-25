@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 12:10:39 by igchurru          #+#    #+#             */
-/*   Updated: 2024/09/24 12:11:51 by igchurru         ###   ########.fr       */
+/*   Updated: 2024/09/25 10:51:08 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,17 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		return (s3);
 	}
 	return (NULL);
+}
+
+void	ft_bzero(void *s, size_t n)
+{
+	char	*p;
+
+	p = (char *)s;
+	while (0 < n)
+	{
+		*p = 0;
+		p++;
+		n--;
+	}
 }

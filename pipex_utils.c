@@ -6,31 +6,11 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 11:54:21 by igchurru          #+#    #+#             */
-/*   Updated: 2024/09/24 12:09:22 by igchurru         ###   ########.fr       */
+/*   Updated: 2024/09/25 10:19:41 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-
-void	error_free_exit(char *str, t_pipedata *pipedata)
-{
-	ft_putstr_fd(str, 2);
-	free_matrix(pipedata->env_vars);
-	exit(-1);
-}
-
-void	free_matrix(char **to_free)
-{
-	int	i;
-
-	i = 0;
-	while (to_free[i])
-	{
-		free(to_free[i]);
-		i++;
-	}
-	free(to_free);
-}
 
 /* get_path extracts from the env variables the one that begins with "PATH=",
 splits it at every ":", and fills pipedata->env_vars. */
@@ -56,11 +36,11 @@ void	checkfiles(char **argv)
 
 	infile = open(argv[1], O_RDONLY);
 	if (infile < 0)
-		perror ("Cannot open infile");
+		error_exit("Cannot open infile\n");
 	close(infile);
 	outfile = open(argv[4], O_WRONLY);
 	if (outfile < 0)
-		perror ("Cannot open outfile");
+		error_exit ("Cannot open outfile\n");
 	close(outfile);
 }
 

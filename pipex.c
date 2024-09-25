@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 10:11:36 by igchurru          #+#    #+#             */
-/*   Updated: 2024/09/24 12:07:28 by igchurru         ###   ########.fr       */
+/*   Updated: 2024/09/25 11:20:31 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,18 +81,18 @@ void	pipex(t_pipedata *pipedata, char **argv, char **env)
 	pid_t	pid;
 
 	if (pipe(pipedata->pipedes) != 0)
-		perror("Error creating pipe\n");
+		error_free_exit("Error creating pipe\n", pipedata);
 	pid = fork();
 	if (pid == 0)
 		act_first_child(pipedata, argv, env);
 	else if (pid < 0)
-		error_free_exit("Error creating first child", pipedata);
+		error_free_exit("Error creating first child\n", pipedata);
 	wait(NULL);
 	pid = fork();
 	if (pid == 0)
 		act_second_child(pipedata, argv, env);
 	else if (pid < 0)
-		error_free_exit("Error creating second child", pipedata);
+		error_free_exit("Error creating second child\n", pipedata);
 	close(pipedata->pipedes[0]);
 	close(pipedata->pipedes[1]);
 	wait(NULL);
@@ -103,8 +103,9 @@ int	main(int argc, char **argv, char **env)
 	t_pipedata	pipedata;
 
 	if (argc != 5)
-		perror("Invalid number of arguments");
+		error_exit("Invalid number of arguments\n");
 	checkfiles(argv);
+	ft_bzero(&pipedata, sizeof(t_pipedata));
 	pipex(&pipedata, argv, env);
 	return (0);
 }

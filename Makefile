@@ -4,7 +4,7 @@ CC = cc
 
 CFLAGS = -Wall -Wextra -Werror
 
-SOURCES = pipex.c pipex_utils.c ft_split.c general_utils.c general_utils2.c
+SOURCES = pipex.c pipex_utils.c ft_split.c general_utils.c general_utils2.c error.c
 
 OBJS = $(SOURCES:.c=.o)
 
