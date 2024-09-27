@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   error_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/25 10:06:52 by igchurru          #+#    #+#             */
-/*   Updated: 2024/09/25 11:22:50 by igchurru         ###   ########.fr       */
+/*   Created: 2024/09/26 09:54:40 by igchurru          #+#    #+#             */
+/*   Updated: 2024/09/27 10:38:45 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "pipex_bonus.h"
 
 void	error_exit(char *str)
 {
@@ -36,4 +36,17 @@ void	free_matrix(char **to_free)
 		i++;
 	}
 	free(to_free);
+}
+
+void	free_pipedes(t_pipedata *pipedata)
+{
+	int	i;
+
+	i = 0;
+	while (i < pipedata->n_of_commands - 1)
+	{
+		free(pipedata->pipedes[i]);
+		i++;
+	}
+	free(pipedata->pipedes);
 }
