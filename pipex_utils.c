@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 11:54:21 by igchurru          #+#    #+#             */
-/*   Updated: 2024/09/25 10:19:41 by igchurru         ###   ########.fr       */
+/*   Updated: 2024/09/30 13:28:39 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,34 @@ void	checkfiles(char **argv)
 	close(outfile);
 }
 
-/* void	set_to_zero(t_pipedata *pipedata)
+/* act_execve prepares the command to be run by execve. It splits the argv
+and the creates a path to execute it. If accesable, it is marked as "true"
+in the pipedata. If no valid path to executable is found, everything is
+freed and program stops with -1. */
+void	act_execve(char *argv, t_pipedata *pipedata, char **env)
 {
-	pipedata->fd_input = 0;
-	pipedata->fd_output = 0 ;
-	pipedata->pipedes[2] = NULL;
-	pipedata->valid_path = false;
-	pipedata->env_vars = NULL;
-} */
+	int		i;
+	char	**command_and_flags;
+	char	*path_to_exec;
+	char	*aux;
+
+	i = 0;
+	command_and_flags = ft_split(argv, ' ');
+	while (pipedata->env_vars[i])
+	{
+		aux = ft_strjoin(pipedata->env_vars[i++], "/");
+		path_to_exec = ft_strjoin(aux, command_and_flags[0]);
+		free(aux);
+		if (!access(path_to_exec, F_OK))
+		{
+			pipedata->valid_path = true;
+			break ;
+		}
+		else
+			free(path_to_exec);
+	}
+	if (pipedata->valid_path == true)
+		execve(path_to_exec, command_and_flags, env);
+	free_matrix(command_and_flags);
+	error_free_exit("Command not found\n", pipedata);
+}

@@ -8,7 +8,8 @@ CFLAGS = -Wall -Wextra -Werror
 
 SOURCES = pipex.c pipex_utils.c ft_split.c general_utils.c general_utils2.c error.c
 
-SOURCES_BONUS = pipex_bonus.c pipex_utils_bonus.c ft_split.c general_utils_bonus.c general_utils2_bonus.c error_bonus.c create_tmp_bonus.c
+SOURCES_BONUS = pipex_bonus.c pipex_utils_bonus.c ft_split.c general_utils_bonus.c\
+general_utils2_bonus.c error_bonus.c create_tmp_bonus.c
 
 INCLUDE = pipex.h
 
@@ -18,9 +19,9 @@ OBJS = $(SOURCES:.c=.o)
 
 OBJS_BONUS = $(SOURCES_BONUS:.c=.o)
 
-GREEN = \033[32m
-YELLOW = \033[33m
-RED = \033[31m
+GREEN = \033[1;32m
+YELLOW = \033[1;33m
+RED = \033[1;31m
 RESET = \033[0m
 
 all: $(NAME)

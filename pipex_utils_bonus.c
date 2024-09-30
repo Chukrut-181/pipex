@@ -6,34 +6,11 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 09:51:40 by igchurru          #+#    #+#             */
-/*   Updated: 2024/09/27 11:56:13 by igchurru         ###   ########.fr       */
+/*   Updated: 2024/09/30 13:20:13 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex_bonus.h"
-
-/* This function checks for the existence of the here_doc command. If found,
-heredoc flag is set to true, limit keyword is registered, and also the number of
-commands and the first command are registered. Then, a temporal file is created
-to store the inpur from the terminal. */
-void	check_for_heredoc(int argc, char **argv, t_pipedata *pipedata)
-{
-	if (!ft_strncmp(argv[1], "here_doc", 8)
-		&& argc > 5 && check_file(argv[argc - 1], 'W'))
-	{
-		pipedata->heredoc = true;
-		pipedata->limit = ft_strdup(argv[2]);
-		pipedata->n_of_commands = argc -4;
-		pipedata->first_command = 3;
-		create_tmp(pipedata);
-	}
-	else if (pipedata->heredoc == false && argc > 4
-		&& check_file(argv[1], 'R') && check_file(argv[argc - 1], 'W'))
-	{
-		pipedata->n_of_commands = argc - 3;
-		pipedata->first_command = 2;
-	}
-}
 
 /* Checks whether the infile and outfile can be accessed
 with their corresponding permits. */
@@ -53,7 +30,7 @@ int	check_file(char *file, char c)
 }
 
 /* Create_pipes uses a while loop to create multiple pipes at once and
-stores their pipedes in the data structure. */
+stores their corresponding pipedes in the data structure. */
 void	create_pipes(t_pipedata *pipedata)
 {
 	int	i;

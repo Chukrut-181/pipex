@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 10:22:42 by igchurru          #+#    #+#             */
-/*   Updated: 2024/09/25 11:22:59 by igchurru         ###   ########.fr       */
+/*   Updated: 2024/09/30 13:29:36 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,12 @@ int		main(int argc, char **argv, char **env);
 void	pipex(t_pipedata *pipedata, char **argv, char **env);
 void	act_first_child(t_pipedata *pipedata, char **argv, char **env);
 void	act_second_child(t_pipedata *pipedata, char **argv, char **env);
-void	act_execve(char *argv, t_pipedata *pipedata, char **env);
 
 //	PIPEX_UTILS.C
 void	get_path(t_pipedata *pipedata, char **env);
 void	checkfiles(char **argv);
 void	set_to_zero(t_pipedata *pipedata);
+void	act_execve(char *argv, t_pipedata *pipedata, char **env);
 
 //	FT_SPLIT.C
 char	**ft_split(char const *s, char c);
