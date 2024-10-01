@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 11:54:21 by igchurru          #+#    #+#             */
-/*   Updated: 2024/09/30 13:28:39 by igchurru         ###   ########.fr       */
+/*   Updated: 2024/10/01 12:42:43 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ void	get_path(t_pipedata *pipedata, char **env)
 }
 
 /* Opens and closes the infile and outfile with their respective permissions
-so as to check that they can be reached and worked with.*/
+so as to check that they can be reached and worked with. If outfile does not
+exist it will be created. */
 void	checkfiles(char **argv)
 {
 	int	infile;
@@ -38,9 +39,9 @@ void	checkfiles(char **argv)
 	if (infile < 0)
 		error_exit("Cannot open infile\n");
 	close(infile);
-	outfile = open(argv[4], O_WRONLY);
+	outfile = open(argv[4], O_WRONLY | O_CREAT, 0777);
 	if (outfile < 0)
-		error_exit ("Cannot open outfile\n");
+		error_exit ("Cannot open or create outfile\n");
 	close(outfile);
 }
 

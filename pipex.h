@@ -6,7 +6,7 @@
 /*   By: igchurru <igchurru@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 10:22:42 by igchurru          #+#    #+#             */
-/*   Updated: 2024/09/30 13:29:36 by igchurru         ###   ########.fr       */
+/*   Updated: 2024/09/30 13:41:53 by igchurru         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,9 @@
 # define PIPEX_H
 
 # include <unistd.h>
-# include <stdio.h>
 # include <stdlib.h>
 # include <stdbool.h>
 # include <fcntl.h>
-# include <errno.h>
 # include <sys/wait.h>
 
 typedef struct s_pipedata
