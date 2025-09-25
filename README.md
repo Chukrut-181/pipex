@@ -1,4 +1,4 @@
-**pipex - Unix Pipeline Recreation | 42 Academy | Score: 125/100 | Completed: [Date]**
+**pipex - Unix Pipeline Recreation | 42 Academy | Score: 125/100 | Completed: October 10th, 2024**
 
 📋 **Project Overview**  
 
